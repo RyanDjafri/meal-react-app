@@ -9,7 +9,7 @@ function App() {
   const [inputSearch, setInputSearch] = useState("");
   useEffect(() => {
     axios.get(apiUrl + inputSearch).then((res) => setMeals(res.data.meals));
-  }, []);
+  }, [inputSearch]);
   return (
     <div className="app-container">
       <h1>React Cooking App</h1>
@@ -18,8 +18,8 @@ function App() {
         onChange={(e) => setInputSearch(e.target.value)}
       />
       <div className="meals-container">
-        {meals.map((meal) => {
-          <Card key={meal.idMeal} meal={meal} />;
+        {meals && meals.map((meal) => {
+         return  <Card key={meal.idMeal} meal={meal} />;
         })}
       </div>
     </div>
